@@ -1,0 +1,31 @@
+class Solution
+{
+    //Function to evaluate a postfix expression.
+    public static int evaluatePostFix(String s)
+    {
+        int result ;
+        Stack<Integer> st = new Stack<>();
+        for(int i=0;i<s.length();i++) {
+            int c= s.charAt(i);
+            if(Character.isLetterOrDigit(c)) {
+               st.push(c-'0'); 
+            }
+            else {
+                int y = st.pop();
+                int x = st.pop();
+                switch(c) {
+                    case '+' : st.push(x + y) ;
+                               break;
+                    case '-' : st.push(x - y);
+                               break;
+                    case '*' : st.push(x * y);
+                               break;
+                    case '/' : st.push(x / y);
+                               break;
+                    
+                } 
+            }
+        }
+        return st.pop();
+    }
+}
