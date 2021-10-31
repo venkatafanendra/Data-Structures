@@ -1,0 +1,52 @@
+class Solution
+{
+	ArrayList <Integer> printBoundary(Node node)
+	{
+	    ArrayList<Integer> result = new ArrayList<>();
+	    if(node == null)
+	    return result;
+	    result.add(node.data);
+	    printBoundaryLeft(node.left,result);
+	    printLeaves(node,result);
+	    printBoundaryRight(node.right,result);
+	    return result;
+	}
+	
+	void printBoundaryLeft(Node node, ArrayList<Integer> result)
+	{
+	    if(node==null)
+	    return;
+	    if(node.left!=null) {
+	       result.add(node.data);
+	       printBoundaryLeft(node.left,result);
+	    }
+	    else if(node.right!=null) {
+	       result.add(node.data);
+	       printBoundaryLeft(node.right,result);
+	    }
+	}
+	
+	void printLeaves(Node node,ArrayList<Integer> result)
+	{
+	    if(node == null)
+	    return ;
+	    printLeaves(node.left,result);
+	    if(node.left==null && node.right==null)
+	    result.add(node.data);
+	    printLeaves(node.right,result);
+	}
+	
+	void printBoundaryRight(Node node, ArrayList<Integer> result)
+	{
+	    if(node==null)
+	    return;
+	    if(node.right!=null) {
+	       printBoundaryRight(node.right,result);
+	       result.add(node.data);
+	    }
+	    else if(node.left!=null) {
+	       printBoundaryRight(node.left,result);
+	       result.add(node.data);
+	    }
+	}
+}
